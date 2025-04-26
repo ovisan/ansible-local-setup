@@ -1,0 +1,18 @@
+---
+# tasks/debian.yml - Debian/Ubuntu specific tasks
+
+# Update apt cache
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  become: true
+
+# Install Debian/Ubuntu specific packages
+- name: Install Debian/Ubuntu packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ debian_packages }}"
+  become: true
+  when: debian_packages | length > 0

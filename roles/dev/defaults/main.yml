@@ -1,0 +1,60 @@
+---
+# defaults/main.yml - Default variables for dev role
+
+# Common packages to install on all platforms
+common_packages:
+  - git
+  - vim
+  - curl
+  - wget
+  - tree
+  - jq
+  - ripgrep
+  - htop
+  - zsh
+
+# Common directories to create
+common_directories:
+  - "{{ ansible_env.HOME }}/.config"
+  - "{{ ansible_env.HOME }}/.local/bin"
+
+# Common git repositories to clone
+common_git_repos: []
+  # Example:
+  # - repo: https://github.com/example/repo.git
+  #   dest: "{{ ansible_env.HOME }}/.example"
+  #   version: main
+  #   update: yes
+
+# macOS specific packages (Homebrew)
+darwin_packages:
+  - zsh
+  - tmux
+  - starship
+  - fd
+  - istat-menus
+  - rectangle
+  - vlc
+  - zed
+  - qbittorrent
+  - iterm2
+  - maccy
+  - appcleaner
+  - podman-desktop
+  - telegram
+  - teamviewer
+  - windsurf
+  - rectangle
+
+# Debian/Ubuntu specific packages
+debian_packages:
+  - zsh
+  - tmux
+  - fd-find
+  - python3-pip
+
+# RedHat/CentOS specific packages
+redhat_packages:
+  - zsh
+  - tmux
+  - python3-pip

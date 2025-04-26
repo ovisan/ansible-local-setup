@@ -1,0 +1,34 @@
+---
+# tasks/darwin.yml - macOS specific tasks
+
+# Skip Homebrew installation since it's already installed
+- name: Check if Homebrew is installed
+  stat:
+    path: /usr/local/bin/brew
+  register: brew_check_usr_local
+
+- name: Check if Homebrew is installed in /opt
+  stat:
+    path: /opt/homebrew/bin/brew
+  register: brew_check_opt
+
+- name: Set Homebrew installed fact
+  set_fact:
+    homebrew_installed: "{{ brew_check_usr_local.stat.exists or brew_check_opt.stat.exists }}"
+
+- name: Skip Homebrew installation
+  debug:
+    msg: "Homebrew is already installed"
+  when: homebrew_installed
+
+- name: Install Homebrew
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  when: not homebrew_installed
+
+# Install macOS specific packages using Homebrew
+- name: Install macOS packages
+  homebrew:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ darwin_packages }}"
+  when: darwin_packages | length > 0

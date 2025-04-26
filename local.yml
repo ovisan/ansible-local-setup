@@ -1,0 +1,10 @@
+---
+# local.yml - Playbook to run the dev role locally
+
+- name: Setup development environment
+  hosts: localhost
+  connection: local
+  gather_facts: true
+
+  roles:
+    - dev

@@ -1,0 +1,17 @@
+---
+# tasks/redhat.yml - RedHat/CentOS specific tasks
+
+# Update yum cache
+- name: Update yum cache
+  yum:
+    update_cache: yes
+  become: true
+
+# Install RedHat/CentOS specific packages
+- name: Install RedHat/CentOS packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ redhat_packages }}"
+  become: true
+  when: redhat_packages | length > 0

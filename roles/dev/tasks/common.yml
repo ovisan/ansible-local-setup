@@ -1,0 +1,45 @@
+---
+# tasks/common.yml - Common tasks for all platforms
+
+# Install common packages based on OS
+- name: Install common packages on macOS
+  homebrew:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ common_packages }}"
+  when: common_packages | length > 0 and ansible_facts['os_family'] == 'Darwin'
+
+- name: Install common packages on Debian
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ common_packages }}"
+  become: true
+  when: common_packages | length > 0 and ansible_facts['os_family'] == 'Debian'
+
+- name: Install common packages on RedHat
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ common_packages }}"
+  become: true
+  when: common_packages | length > 0 and ansible_facts['os_family'] == 'RedHat'
+
+# Create common directories
+- name: Create common directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop: "{{ common_directories }}"
+  when: common_directories | length > 0
+
+# Clone common git repositories
+- name: Clone common git repositories
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
+    version: "{{ item.version | default('master') }}"
+    update: "{{ item.update | default(yes) }}"
+  loop: "{{ common_git_repos }}"
+  when: common_git_repos | length > 0

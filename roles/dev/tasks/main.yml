@@ -1,0 +1,15 @@
+---
+# tasks/main.yml - Main tasks file for dev role
+
+# Include common tasks for all platforms
+- include_tasks: common.yml
+
+# Include OS-specific tasks
+- include_tasks: darwin.yml
+  when: ansible_facts['os_family'] == 'Darwin'
+
+- include_tasks: debian.yml
+  when: ansible_facts['os_family'] == 'Debian'
+
+- include_tasks: redhat.yml
+  when: ansible_facts['os_family'] == 'RedHat'
