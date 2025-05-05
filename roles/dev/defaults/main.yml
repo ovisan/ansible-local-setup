@@ -12,19 +12,36 @@ common_packages:
   - ripgrep
   - htop
   - zsh
+  - zsh-completions
+  - zellij
+  - skopeo
+  - yq
+  - podman
+  - podman-compose
+  - ranger
+  - lazygit
+  - dust
+  - fzf
+  - eza
+  - bat
 
 # Common directories to create
 common_directories:
   - "{{ ansible_env.HOME }}/.config"
   - "{{ ansible_env.HOME }}/.local/bin"
+  - "{{ ansible_env.HOME }}/code"
 
 # Common git repositories to clone
-common_git_repos: []
+common_git_repos:
+  - repo: https://github.com/ovisan/dotfiles
+    dest: "{{ ansible_env.HOME }}/code/dotfiles"
+    version: main
+    update: true
   # Example:
   # - repo: https://github.com/example/repo.git
   #   dest: "{{ ansible_env.HOME }}/.example"
   #   version: main
-  #   update: yes
+  #   update: true
 
 # macOS specific packages (Homebrew)
 darwin_packages:
@@ -45,6 +62,9 @@ darwin_packages:
   - teamviewer
   - windsurf
   - rectangle
+  - starship
+  - wireguard-tools
+  - wireguard-go
 
 # Debian/Ubuntu specific packages
 debian_packages:

@@ -32,3 +32,4 @@
     state: present
   loop: "{{ darwin_packages }}"
   when: darwin_packages | length > 0
+  ignore_errors: true

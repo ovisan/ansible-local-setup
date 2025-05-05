@@ -4,6 +4,21 @@
 # Include common tasks for all platforms
 - include_tasks: common.yml
 
+# Copy dotfiles to home directory
+- name: Copy .vimrc from dotfiles repository to home directory
+  copy:
+    src: "{{ ansible_env.HOME }}/code/dotfiles/.vimrc"
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+    mode: '0644'
+  when: common_git_repos | selectattr('repo', 'equalto', 'https://github.com/ovisan/dotfiles') | list | length > 0
+
+- name: Copy .zshrc from dotfiles repository to home directory
+  copy:
+    src: "{{ ansible_env.HOME }}/code/dotfiles/.zshrc"
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    mode: '0644'
+  when: common_git_repos | selectattr('repo', 'equalto', 'https://github.com/ovisan/dotfiles') | list | length > 0
+
 # Include OS-specific tasks
 - include_tasks: darwin.yml
   when: ansible_facts['os_family'] == 'Darwin'

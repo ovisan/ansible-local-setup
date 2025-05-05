@@ -40,6 +40,6 @@
     repo: "{{ item.repo }}"
     dest: "{{ item.dest }}"
     version: "{{ item.version | default('master') }}"
-    update: "{{ item.update | default(yes) }}"
+    update: "{{ item.update | default(true) | bool }}"
   loop: "{{ common_git_repos }}"
   when: common_git_repos | length > 0
