@@ -24,6 +24,7 @@ common_packages:
   - fzf
   - eza
   - bat
+  - nvim
 
 # Common directories to create
 common_directories:
