@@ -43,28 +43,27 @@ common_git_repos:
   #   version: main
   #   update: true
 
-# macOS specific packages (Homebrew)
+# macOS specific Homebrew formulas (CLI tools)
 darwin_packages:
   - zsh
   - tmux
   - starship
   - fd
+  - wireguard-tools
+  - wireguard-go
+
+# macOS specific Homebrew Casks (GUI applications)
+darwin_casks:
   - istat-menus
   - rectangle
   - vlc
   - zed
-  - qbittorrent
   - iterm2
   - maccy
   - appcleaner
   - podman-desktop
   - telegram
-  - teamviewer
-  - windsurf
-  - rectangle
-  - starship
-  - wireguard-tools
-  - wireguard-go
+  - transmission
 
 # Debian/Ubuntu specific packages
 debian_packages:

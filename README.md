@@ -14,20 +14,23 @@ This Ansible role sets up a development environment on macOS or Linux systems. I
 - Ansible 2.9 or higher
 - macOS or Linux (Debian/Ubuntu or RedHat/CentOS)
 
-## Role Structure
+## Project Structure
 
 ```
-roles/dev/
-├── defaults/
-│   └── main.yml          # Default variables including package lists
-├── meta/
-│   └── main.yml          # Role metadata
-└── tasks/
-    ├── main.yml          # Main tasks file with OS detection
-    ├── common.yml        # Common tasks for all platforms
-    ├── darwin.yml        # macOS specific tasks
-    ├── debian.yml        # Debian/Ubuntu specific tasks
-    └── redhat.yml        # RedHat/CentOS specific tasks
+.
+├── setup.sh              # Bootstrap script (installs brew/ansible, runs playbook)
+├── local.yml             # Main Ansible playbook
+└── roles/dev/
+    ├── defaults/
+    │   └── main.yml      # Default variables including package lists
+    ├── meta/
+    │   └── main.yml      # Role metadata
+    └── tasks/
+        ├── main.yml      # Main tasks file with OS detection
+        ├── common.yml    # Common tasks for all platforms
+        ├── darwin.yml    # macOS specific tasks
+        ├── debian.yml    # Debian/Ubuntu specific tasks
+        └── redhat.yml    # RedHat/CentOS specific tasks
 ```
 
 ## Configuration
@@ -41,21 +44,23 @@ Edit the `defaults/main.yml` file to customize:
 
 ## Usage
 
-1. Clone this repository:
-   ```
-   git clone https://github.com/yourusername/ansible-dev-role.git
-   cd ansible-dev-role
-   ```
+### Quick Start (Recommended)
 
-2. Run the playbook locally:
-   ```
-   ansible-playbook local.yml
-   ```
+Simply run the provided setup script. It will automatically install Homebrew (on macOS) and Ansible if they are not already present, then run the playbook:
 
-3. To run with sudo privileges (for system-wide installations):
-   ```
-   ansible-playbook local.yml --ask-become-pass
-   ```
+```bash
+./setup.sh
+```
+
+The script will prompt for your sudo password when needed.
+
+### Manual Setup
+
+If you already have Ansible installed, you can run the playbook directly:
+
+```bash
+ansible-playbook local.yml --ask-become-pass
+```
 
 ## Customization
 

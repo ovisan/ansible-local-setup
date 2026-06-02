@@ -25,11 +25,20 @@
   shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   when: not homebrew_installed
 
-# Install macOS specific packages using Homebrew
+# Install macOS specific Homebrew formulas (CLI tools)
 - name: Install macOS packages
   homebrew:
     name: "{{ item }}"
     state: present
   loop: "{{ darwin_packages }}"
   when: darwin_packages | length > 0
+  ignore_errors: true
+
+# Install macOS specific Homebrew Casks (GUI applications)
+- name: Install macOS casks
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ darwin_casks }}"
+  when: darwin_casks | length > 0
   ignore_errors: true
