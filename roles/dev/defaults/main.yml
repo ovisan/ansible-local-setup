@@ -25,6 +25,7 @@ common_packages:
   - eza
   - bat
   - nvim
+  - nodejs
 
 # Common directories to create
 common_directories:
