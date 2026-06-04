@@ -66,6 +66,7 @@ darwin_casks:
   - podman-desktop
   - telegram
   - transmission
+  - brave
 
 # Debian/Ubuntu specific packages
 debian_packages:
