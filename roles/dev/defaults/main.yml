@@ -67,7 +67,6 @@ darwin_casks:
   - telegram
   - transmission
   - brave
-  - hiddenbar
 
 # Debian/Ubuntu specific packages
 debian_packages:
