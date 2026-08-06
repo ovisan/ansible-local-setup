@@ -68,6 +68,7 @@ darwin_casks:
   - transmission
   - brave-browser
   - anytype
+  - trex
 
 # Debian/Ubuntu specific packages
 debian_packages:
