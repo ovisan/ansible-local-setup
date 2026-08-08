@@ -60,7 +60,7 @@ darwin_casks:
   - rectangle
   - vlc
   - zed
-  - iterm2
+  - ghostty
   - maccy
   - appcleaner
   - podman-desktop
