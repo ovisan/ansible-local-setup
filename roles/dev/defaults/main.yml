@@ -10,7 +10,6 @@ common_packages:
   - tree
   - jq
   - ripgrep
-  - htop
   - btop
   - zsh
   - zsh-completions
