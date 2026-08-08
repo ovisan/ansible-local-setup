@@ -73,6 +73,8 @@ darwin_casks:
   - brave-browser
   - anytype
   - trex
+  - font-jetbrains-mono-nerd-font
+  - font-meslo-lg-nerd-font
 
 # Debian/Ubuntu specific packages
 debian_packages:
