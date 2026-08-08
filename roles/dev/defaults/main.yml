@@ -11,6 +11,7 @@ common_packages:
   - jq
   - ripgrep
   - htop
+  - btop
   - zsh
   - zsh-completions
   - zellij
@@ -24,6 +25,8 @@ common_packages:
   - fzf
   - eza
   - bat
+  - zoxide
+  - tldr
   - nvim
   - nodejs
 
